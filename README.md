@@ -1,58 +1,113 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+```python
+import base64
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+readme_content = """# ECO-SHARE: Platform Manajemen Distribusi Energi & Swasembada Ekonomi
 
-## About Laravel
+Repositori ini adalah template dasar proyek Laravel Fullstack untuk simulasi babak final Hackathon Play IT 2026. Fokus repositori ini sekarang adalah **Setup Awal Lingkungan Pengembangan (Development Environment Setup)** agar seluruh anggota tim memiliki basis kode dan database yang sinkron.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prasyarat Sistem (Prerequisites)
+Sebelum memulai, pastikan laptop kamu sudah terinstal:
+* **XAMPP / Laragon** (PHP versi 8.2 atau lebih tinggi & MySQL)
+* **Composer** (Dependency Manager untuk PHP)
+* **Node.js & NPM** (Untuk eksekusi Vite & Tailwind CSS)
+* **Git / Git Bash**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Langkah-Langkah Setup Awal (Untuk Anggota Tim)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Jika ketua tim sudah melakukan *push* kode awal ke GitHub, 2 anggota tim lainnya wajib mengikuti langkah-langkah di bawah ini untuk menjalankan proyek di laptop masing-masing:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. Kloning Repositori
+Buka Terminal atau Git Bash, lalu kloning proyek ini:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+```text
+README.md generated successfully.
 
-## Contributing
+```bash
+git clone <URL_REPOSITORI_GITHUB_KAMU>
+cd eco-share
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
 
-## Code of Conduct
+### 2. Instal Dependensi PHP (Composer)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Instal semua library PHP yang dibutuhkan oleh Laravel:
 
-## Security Vulnerabilities
+```bash
+composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
 
-## License
+### 3. Instal Dependensi JavaScript & CSS (NPM)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Instal library frontend untuk kompilasi Tailwind CSS via Vite:
+
+```bash
+npm install
+
+```
+
+### 4. Setup Konfigurasi Lingkungan (.env)
+
+Salin file template `.env.example` menjadi file `.env` utama:
+
+```bash
+cp .env.example .env
+
+```
+
+### 5. Generate Application Key
+
+Buat kunci keamanan enkripsi unik untuk aplikasi kamu:
+
+```bash
+php artisan key:generate
+
+```
+
+### 6. Konfigurasi & Migrasi Database MySQL
+
+1. Buka **phpMyAdmin** (`http://localhost/phpmyadmin`).
+2. Buat database baru kosongan dengan nama: **`eco_share`**.
+3. Buka file `.env` di VS Code kamu, lalu pastikan konfigurasinya sudah sesuai:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=eco_share
+DB_USERNAME=root
+DB_PASSWORD=(kosongkna jika tanpa pass)
+
+```
+
+
+
+---
+
+## Cara Menjalankan Aplikasi (Mode Koding & Auto-Refresh)
+
+Agar fitur **Auto Refresh (Live Reload)** berjalan secara otomatis setiap kali ada perubahan pada file `.blade.php` atau Controller, kamu **WAJIB** membuka dua jendela terminal secara bersamaan:
+
+* **Terminal 1 (Server Backend PHP):**
+```bash
+php artisan serve
+
+```
+
+
+* **Terminal 2 (Server Frontend Vite - JANGAN DITUTUP):**
+```bash
+npm run dev
+
+```
+
+Buka browser kamu dan akses link berikut: **`http://127.0.0.1:8000`**
+
+```
+
+Silakan dicoba instruksinya, kabari saya jika ada temanmu yang mengalami kendala saat proses instalasi. programmer by putra!
